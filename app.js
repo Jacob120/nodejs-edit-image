@@ -43,6 +43,19 @@ const addImageWatermarkToImage = async function (
   }
 };
 
+/* left this for future testing */
+
+// const changeImageBrightness = async function (inputFile, outputFile, value) {
+//   try {
+//     const image = await Jimp.read(inputFile);
+//     image.brightness(value);
+//     // await image.brightness(value).quality(100).writeAsync(outputFile);
+//     await image.quality(100).writeAsync(outputFile);
+//   } catch (error) {
+//     console.log('Something went wrong... Try again TEST!');
+//   }
+// };
+
 const prepareOutputFileName = (fileName) => {
   const nameSplit = fileName.split('.');
   return nameSplit[0] + '-with-watermark.' + nameSplit[1];
@@ -70,6 +83,11 @@ const startApp = async () => {
       message: 'What file do you want to mark?',
       default: 'test.jpg',
     },
+    // {
+    //   name: 'moreOptions',
+    //   message: 'Would you like to check more options?',
+    //   type: 'confirm',
+    // },
     {
       name: 'watermarkType',
       type: 'list',
@@ -80,6 +98,35 @@ const startApp = async () => {
     console.log('Something went wrong. Please try again.');
     process.exit();
   }
+
+  /* left this for future testing */
+
+  // more options
+  // if (options.moreOptions) {
+  //   const otherOptions = await inquirer.prompt([
+  //     {
+  //       name: 'settings',
+  //       type: 'list',
+  //       choices: ['Brightness', 'Contrast', 'Black & White', 'Invert'],
+  //     },
+  //   ]);
+
+  //   // brightness
+  //   if (otherOptions.settings === 'Brightness') {
+  //     const brightnessValue = await inquirer.prompt([
+  //       {
+  //         name: 'brightValue',
+  //         type: 'input',
+  //         message: 'Please choose value between -1 to 1:',
+  //       },
+  //     ]);
+  //     const value = brightnessValue.value;
+
+  //     changeImageBrightness('./img/' + options.inputImage, value);
+  //   }
+  // }
+
+  // watermarks
   if (options.watermarkType === 'Text watermark') {
     const text = await inquirer.prompt([
       {
